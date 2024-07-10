@@ -90,7 +90,7 @@ function App() {
             <h1 className="text-4xl font-bold mb-4 border">About Me</h1>
             <p className="text-lg mb-4 border">My name is Boy Cenly Dwi Sandes Pasella. I'm a Freelance Full Stack Developer based in Kecamatan Kayu Aro, Kabupaten Kerinci, Jambi, and I'm very passionate and dedicated to my work. With 2 month experience as a professional Full Stack Developer, I have acquired the skills necessary to build great and premium websites.</p>
             <div className=" p-4 rounded-lg mb-4 border">
-              <p className="mb-2 border"><strong>Name:</strong> Boy Cenly Dwi Sandes Pasella</p>
+              <p className="mb-2 border"><strong>Name:</strong> Boy Cenly Dwi Sandes Pasella, S.Kom</p>
               <p className="mb-2 border"><strong>Age:</strong> 22</p>
               <p className="mb-2 border"><strong>Phone:</strong> +62 822 1177 9935</p>
               <p className="mb-2 border"><strong>Address:</strong> Kecamatan Kayu Aro, Kabupaten Kerinci, Jambi</p>
