@@ -1,0 +1,14 @@
+# 1. Lakukan perubahan di kode sumber
+
+# 2. Commit perubahan
+git add .
+git commit -m "Deskripsi perubahan yang dilakukan"
+
+# 3. Push perubahan ke GitHub
+git push origin main
+
+# 4. Build proyek
+npm run build
+
+# 5. Deploy ulang
+npm run deploy
