@@ -2,14 +2,27 @@
 *{
     font-family: 'Poppins', sans-serif;
 }
-html{
-    scroll-behavior: smooth;
-    background-color: white;
-    background-image: radial-gradient(#F2F2F2 1px, transparent 1px);
-    background-size: 10px 10px;
-
+html {
+  scroll-behavior: smooth;
+  background-color: white;
+  background-image: radial-gradient(#F2F2F2 1px, transparent 2px);
+  background-size: 10px 10px;
 }
 
+.dark-mode {
+  background-color: #121212;
+  background-image: radial-gradient(#333333 1px, transparent 2px);
+  color: #e0e0e0;
+}
+header {
+  background-color: white;
+  color: black;
+}
+
+.dark-mode header {
+  background-color: #333333;
+  color: #e0e0e0;
+}
 .flip-container {
     perspective: 1000px;
     cursor: pointer;

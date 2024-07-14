@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import ScrollReveal from 'scrollreveal';
 import Slider from "react-slick";
@@ -6,6 +6,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Typed from 'typed.js';
 import me from './assets/img/me1.jpg';
+import me2 from './assets/img/Adobe.jpg';
+import me3 from './assets/img/family.jpg';
+import unand from './assets/img/unand.png';
+import kaito from './assets/img/kaito.png';
 import cv from './assets/cv/cv.pdf'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ParallaxMousemove, ParallaxMousemoveLayer } from 'react-parallax-mousemove';
@@ -25,7 +29,7 @@ function App() {
     slidesToShow: 3,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 2000,
+  autoplaySpeed: 5000,
     responsive: [
       {
         breakpoint: 768,
@@ -46,6 +50,12 @@ function App() {
         }
       }
     ]
+  };
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark-mode', !isDarkMode);
   };
   const [isOpen, setIsOpen] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -72,35 +82,40 @@ function App() {
 
   useEffect(() => {
     ScrollReveal().reveal('.reveal', {
-       delay: 10,
-      distance: '200px',
+      delay: 10,
+      distance: '1000px',
       origin: 'left',
       opacity: 0,
       duration: 500,
       reset: true,
-      viewFactor: 0.5, // Fixed the decimal notation
-    });
+      viewFactor: 0.2, // Increased the viewFactor
+    })
+  }, [])
 
+  const typedElement = useRef(null);
+
+  useEffect(() => {
     const options = {
-      strings: ['ボイ ケンリ.','', 'Boi Kenri'],
+      strings: ["ボイ センリー", "", "Boy Cenly"],
       typeSpeed: 50,
       backSpeed: 50,
       loop: true,
     };
-    
-    const typed = new Typed('.typed-logo', options);
+
+    const typed = new Typed(typedElement.current, options);
 
     return () => {
       typed.destroy();
-    }
-  }, [])
+    };
+  }, []);
+
   return (
     <>
       {/* header */}
       <header className="fixed w-full top-0 z-50 bg-white text-dark shadow-md ">
         <nav className="p-4  ">
           <div className="container mx-auto flex justify-between items-center">
-            <a href="#home" className="text-2xl font-bold">B<span className="text-red-500">.</span></a>
+          <a href="#home" className="text-1xl font-bold">ボイ<span className="text-red-500">センリー</span></a>
             <div className="hidden lg:flex space-x-4">
               <a href="#home" className="hover:text-gray-300 font-semibold">Home</a>
               <a href="#about" className="hover:text-gray-300 font-semibold">About</a>
@@ -109,9 +124,11 @@ function App() {
               <a href="#contact" className="hover:text-gray-300 font-semibold">Contact</a>
             </div>
             <div className="hidden lg:flex items-center space-x-2">
-            <img src={me} alt="Profile" className="rounded" width={50}/>
-
-              <span></span>
+            {/* <img src={me} alt="Profile" className="rounded" width={50}/> */}
+            
+            <button onClick={toggleDarkMode} className="cursor-pointer">
+                {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+              </button>
             </div>
             <div className="lg:hidden ">
               <button onClick={toggleMenu} className="text-red-500 focus:outline-none ">
@@ -131,6 +148,9 @@ function App() {
             {/* <li><a href="#services" className="block text-white hover:text-gray-300">Services</a></li> */}
             <li className='p-2 border-s border-e p-2'><a href="#portfolio" className="block text-dark hover:text-gray-300 hover:pl-5 transition-all duration-300 font-semibold">Portfolio</a></li>
             <li className='p-2 border-s border-e p-2'><a href="#contact" className="block text-dark hover:text-gray-300 hover:pl-5 transition-all duration-300 font-semibold">Contact</a></li>
+            <button onClick={toggleDarkMode} className="cursor-pointer">
+                {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+              </button>
           </ul>
 
         </nav>
@@ -148,18 +168,18 @@ function App() {
               </div>
             </div>
           </div>
-          <h1 className="text-2xl font-bold mb-2 z-10">Hello, I'm <br /><span className='typed-logo'></span></h1>
-          <p className="text-lg mb-2">Web Developer</p>
-          <a href='#about' className="bg-red-500 text-white px-6 py-2 rounded-full mt-4" >Hire Me</a>
+          <h1 className="text-2xl font-bold mt-2 mb-2 z-10">Hello, I'm <br /> <span className='typed-logo' ref={typedElement}></span></h1>
+          {/* <p className="text-lg mb-2">Front-end & Back-end <br /> Developer</p> */}
+          <a href='#about' className="bg-red-500 text-white px-6 py-2 rounded-full mt-2" >Hire Me</a>
           {/* <button>❤️</button> */}
 
         </div>
       </section>
 
-      <section className="container mx-auto pt-20 lg:pt-40 p-5 h-screen reveal " id='about'>
-        <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between ">
+      <section className="container mx-auto pt-20 lg:pt-40 p-5 h-screen reveal  " id='about'>
+        <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between  ">
           <div className="lg:w-1/3 flex  justify-center items-center hidden lg:flex">
-            <img src={me} alt="Profile" className="rounded mt-20" width={200}/>
+            <img src={me2} alt="Profile" className="rounded" width={300} />
           </div>
           <div className="lg:w-2/3 lg:pl-10">
             {/* <h2 className="text-red-500 text-xl font-bold mb-2">Discover</h2> */}
@@ -171,9 +191,9 @@ function App() {
               <p className="mb-2"><strong>Age:</strong> 22</p>
               <p className="mb-2"><strong>Phone:</strong> +62 822 1177 9935</p>
               <p className="mb-2"><strong>Address:</strong> Kecamatan Kayu Aro, Kabupaten Kerinci, Jambi</p>
-              <p className="mb-2"><strong>Experience:</strong> Currently, I work at Lembaga Penelitian dan Pengabdian Masyarakat Universitas Andalas</p>
+              <p className="mb-2"><strong>Current Position:</strong> Programmer at Lembaga Penelitian dan Pengabdian Masyarakat Universitas Andalas</p>
               <p className="mb-2"><strong>Social:</strong> 
-              <a href="https://www.instagram.com/boycenly" className="text-pink-500 mx-2 text-2xl" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/_sino.ig/" className="text-pink-500 mx-2 text-2xl" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={socialIcons.instagram} />
           </a>
           <a href="https://web.facebook.com/chichik.khenz" className="text-blue-600 mx-2 text-2xl " target="_blank" rel="noopener noreferrer">
@@ -221,56 +241,68 @@ function App() {
         <p className="text-center mb-8">Here are some projects that I have worked on.</p>
         <Slider {...settings}>
         <div className="p-4">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden" style={{ height: '300px' }}>
-              <img src={me} alt="Project 1" className="w-full h-48 object-cover"/>
-              <div className="p-4">
-                <h2 className="text-xl font-bold">Project 1</h2>
-                <p className="text-gray-600">Description of Project 1</p>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden" style={{ height: '400px' }}>
+            <div className="bg-white p-4">
+            <h1 className='text-center h-24'>Logo Not Available</h1>
+            </div>
+              <div className="p-4 text-center">
+                <h2 className="text-xl font-bold text-red-500">PT. Bungo Padi Mandiri</h2>
+                <p className="text-gray-600">Designer & Developer</p>
+                <p className="text-gray-600 mt-2 text-sm lg:text-md">I developed the product cart and e-commerce processes using PHP and MySQL, ensuring a seamless shopping experience for users.</p>
+                <div className="flex justify-center mt-4">
+                 
+                </div>
               </div>
             </div>
           </div>
           <div className="p-4">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden" style={{ height: '300px' }}>
-              <img src={me} alt="Project 2" className="w-full h-48 object-cover"/>
-              <div className="p-4">
-                <h2 className="text-xl font-bold">Project 2</h2>
-                <p className="text-gray-600">Description of Project 2</p>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden" style={{ height: '400px' }}>
+            <div className="bg-white p-4">
+
+                <img src={unand} alt="Project 3" className=" w-20 mx-auto "/>
+              </div>
+              <div className="p-4 text-center">
+                <h2 className="text-xl font-bold text-red-500">LPPM Universitas Andalas</h2>
+                <p className="text-gray-600">Backend Developer</p>
+                <p className="text-gray-600 mt-2 text-sm lg:text-md">I am currently working on the backend development for the SIPPMI website at Lembaga Penelitian dan Pengabdian Masyarakat Universitas Andalas, focusing on enhancing the system's functionality and performance.</p>
+                <div className="flex justify-center mt-4">
+                 
+                </div>
               </div>
             </div>
           </div>
           <div className="p-4">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden" style={{ height: '300px' }}>
-              <img src={me} alt="Project 3" className="w-full h-48 object-cover"/>
-              <div className="p-4">
-                <h2 className="text-xl font-bold">Project 3</h2>
-                <p className="text-gray-600">Description of Project 3</p>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden" style={{ height: '400px' }}>
+            <div className="bg-white p-4">
+
+                <img src={kaito} alt="Project 3" className=" w-24 mx-auto "/>
+              </div>
+              <div className="p-4 text-center">
+                <h2 className="text-xl font-bold text-red-500">Kaito Komputer & CCTV</h2>
+                <p className="text-gray-600">Designer & Developer</p>
+                <p className="text-gray-600 mt-2 text-sm lg:text-md">I developed a website using PHP and MySQL for laptop recommendations using the SMART method, ensuring users get the right recommendations based on their needs.</p>
+                <div className="flex justify-center mt-4">
+                </div>
               </div>
             </div>
           </div>
+
+ 
           {/* Add more cards as needed */}
         </Slider>
       </section>
-      <section className="container mx-auto text-center pt-20 lg:pt-40 p-5 h-screen reveal" id='contact'>
-        <h1 className="text-4xl font-bold mb-4 text-red-500">Contact</h1>
-        <p className="text-center mb-8">Feel free to reach out to me through the form below or via my social media channels.</p>
+      <section className="container mx-auto text-center pt-40 lg:pt-40 p-5 h-screen reveal" id='contact'>
+      <h1 className="text-4xl font-bold mb-4 text-red-500">Contact</h1>
+        <p className="text-center mb-8">Feel free to reach out to me for any inquiries or collaborations.</p>
 
         <form className="max-w-lg mx-auto">
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-              Name
-            </label>
             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Your name" />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              Email
-            </label>
             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Your email" />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="message">
-              Message
-            </label>
             <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  placeholder="Your message" rows="5"></textarea>
           </div>
           <div className="flex items-center justify-between">
@@ -284,12 +316,13 @@ function App() {
       </section>
 
 
-      <footer className="text-black py-6">
+      <footer className="text-black py-6 reveal">
       <div className="container mx-auto text-center">
-        <p>&copy; 2024 ��イ ケンリ</p>
+      <p className='text-red-500'>&copy; 2024 ボーイ ケンリ</p>
+      
      
         <div className="mt-4">
-          <a href="https://www.instagram.com/boycenly" className="text-pink-500 p-2 text-2xl border rounded" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/_sino.ig/" className="text-pink-500 p-2 text-2xl border rounded" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={socialIcons.instagram} />
           </a>
           <a href="https://web.facebook.com/chichik.khenz" className="text-blue-600 p-2 m-2 text-2xl border rounded" target="_blank" rel="noopener noreferrer">
